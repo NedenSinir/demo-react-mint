@@ -1,0 +1,96 @@
+{
+  "version": "0.1.0",
+  "name": "deniz_sc",
+  "instructions": [
+    {
+      "name": "initPda",
+      "accounts": [
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "nftEscrowPda",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "sellNft",
+      "accounts": [
+        {
+          "name": "minter",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "minterTokenAcc",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftHolderTokenAcc",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "nftMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "accountBump",
+          "type": "u8"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "address": "9B21kHXe6q7coFRr8zqd5fM9jjV4x8VL2vy8i23d3eW2"
+  }
+}
