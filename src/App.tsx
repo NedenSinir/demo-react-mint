@@ -22,7 +22,7 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 const App: FC = () => {
     const [data, setData] = useState("a")
     useEffect(() => {
-        fetch("/api" ).then(
+        fetch("/api", {mode:'cors'}).then(
             response => response.json()
         ).then(
             data => {
@@ -88,6 +88,7 @@ const Content: FC = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ wallet: wallet?.publicKey }),
+
             };
            let data = await fetch('/data', requestOptions).then((res) => res.json()).then((data) => data)
            hasPerm = data.hasPermission;
