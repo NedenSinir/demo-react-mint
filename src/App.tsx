@@ -33,6 +33,7 @@ const App: FC = () => {
                 )
                 
             } catch (error) {
+                console.log(error)
                 
             }
         }, [])
