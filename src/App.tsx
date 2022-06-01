@@ -22,7 +22,7 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 const App: FC = () => {
     const [data, setData] = useState("a")
     useEffect(() => {
-        fetch("/api", {mode:"cors"} ).then(
+        fetch("/api" ).then(
             response => response.json()
         ).then(
             data => {
