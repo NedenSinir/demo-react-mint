@@ -1,4 +1,3 @@
-
 import { clusterApiUrl } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo,useState,useEffect } from 'react';
 import "./App.css";
@@ -20,24 +19,17 @@ require('./App.css');
 require('@solana/wallet-adapter-react-ui/styles.css');
 
 const App: FC = () => {
-        
-        const [data, setData] = useState("a")
-        useEffect(() => {
-            try {
-                fetch("/api", {mode:'cors'}).then(
-                    response => response.json()
-                ).then(
-                    data => {
-                        setData(data.message)
-                    }
-                )
-                
-            } catch (error) {
-                console.log(error)
-                
+    
+    const [data, setData] = useState("a")
+    useEffect(() => {
+        fetch("/api").then(
+            response => response.json()
+        ).then(
+            data => {
+                setData(data.message)
             }
-        }, [])
-
+        )
+    }, [])
 
     return (
         <Context>
