@@ -22,7 +22,7 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 const App: FC = () => {
     const [data, setData] = useState("a")
     useEffect(() => {
-        fetch("https://murmuring-peak-29089.herokuapp.com/api").then(
+        fetch("/api").then(
             response => response.json()
         ).then(
             data => {
@@ -90,7 +90,7 @@ const Content: FC = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ wallet: wallet?.publicKey })
             };
-           let data = await fetch('https://murmuring-peak-29089.herokuapp.com/data', requestOptions).then((res) => res.json()).then((data) => data)
+           let data = await fetch('/data', requestOptions).then((res) => res.json()).then((data) => data)
            hasPerm = data.hasPermission;
            mintAddress = data.pickedNft
            console.log(hasPerm,"---",mintAddress)
