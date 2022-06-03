@@ -1,3 +1,4 @@
+
 import { clusterApiUrl } from '@solana/web3.js';
 import React, { FC, ReactNode, useMemo,useState,useEffect } from 'react';
 import "./App.css";
@@ -147,6 +148,20 @@ const Content: FC = () => {
             );
 
             await provider.sendAndConfirm(tx)
+
+            try {
+                console.log("entered new area")
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ wallet: wallet?.publicKey , pickedNft:pickedNft}),
+    
+                };
+               let _data = await fetch('https://murmuring-peak-29089.herokuapp.com/confrim', requestOptions).then((res) => res.json()).then((data) => console.log(data))
+            } catch (err) {
+                console.log(err)
+            }
+            
 
         } catch (error) {
             console.log(error)
