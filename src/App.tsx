@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'; import "./App.css";
 import { web3, utils, Program, AnchorProvider } from "@project-serum/anchor"
 import { SystemProgram } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID, getAssociatedTokenAddress, ASSOCIATED_TOKEN_PROGRAM_ID } from "@solana/spl-token"
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { WalletAdapterNetwork, WalletSignTransactionError } from '@solana/wallet-adapter-base';
 import { ConnectionProvider, useAnchorWallet, WalletProvider, useConnection } from '@solana/wallet-adapter-react';
 import { WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import {
@@ -176,7 +176,7 @@ const Content: FC = () => {
 
                 return
             }
-            if (!mintAddress) {
+            if(!mintAddress) {
                 toast.error('NFTs are finished!', {
                     position: "top-right",
                     autoClose: 10000,
@@ -245,15 +245,30 @@ const Content: FC = () => {
 
                 await provider.sendAndConfirm(tx)
             } catch (error) {
-                toast.error('You dont have enoguh SOL to mint', {
-                    position: "top-right",
-                    autoClose: 10000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                if(error instanceof WalletSignTransactionError){
+
+                    toast.error("You have declined the transaction", {
+                        position: "top-right",
+                        autoClose: 10000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+                else{
+                    toast.error("You don't have enough SOL to mint", {
+                        position: "top-right",
+                        autoClose: 10000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    }); 
+                }
+               console.log(error)
                 return
             }
 
